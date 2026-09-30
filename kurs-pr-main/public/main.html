@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mzzlff</title>
+    <link href="https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section id="header">
+        <header>
+            <section id="promo">
+                
+                <div class="parallax-section section-1">
+            <nav>
+                <div id="links-header">
+                    <a href="#" id="songs">Синглы</a>
+                    <a href="main.html#neww" id="albums">Альбомы</a>
+                    <a href="main.html" id="logo">MZLFF</a>
+                    <a href="#" id="platforms" class="btn">Площадки</a>
+                    
+                        <style>
+        /* Панель, которая выезжает сбоку */
+        .side-panel{
+            position: fixed;
+            top: 0;
+            right: -400px;      /* скрыта за правым краем */
+            width: 350px;
+            height: 100%;
+            background: rgb(5, 3, 92);
+            box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+            transition: right 0.4s ease;
+            z-index: 1000;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        .side-panel.open{
+            right: 0;          
+        }
+
+        .panel-content{
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .close-panel{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ffffff;
+            color: rgb(40, 5, 123);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        /* Затемнение фона (оверлей) */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .panel-content{
+            h1{
+                font-family: Arsenal SC;
+                font-size: 3rem;
+                font-weight: bold;
+                font-style: italic;
+            }
+            p{
+                font-family: Arsenal SC;
+                font-size: 1rem;
+                font-style: italic;
+            }
+                 
+        }
+
+        .links-soz{
+                display: flex; 
+                flex-direction: column;
+                margin: 1vw 0;           
+            }
+            .links-ss{
+                display: flex;
+                align-items: center;
+                
+                a{
+                    cursor: url(image/main/cursur-point.png) 2 2, default;
+                    text-decoration: none;
+                    color: #ffffff;
+                }
+                img{
+                    cursor: url(image/main/cursur-point.png) 2 2, default;
+                    width: 2.5vw;
+                }
+            }
+    </style>
+    <!-- Кнопка-картинка -->
+    
+    
+    <div class="overlay" id="overlay"></div>
+
+    <div class="side-panel" id="sidePanel">
+        <button class="close-panel" id="closePanelBtn">×</button>
+        <div class="panel-content">
+            <h1>Площадки</h1>
+            <p>Здесь расположенны ссылки на главные 
+                социалные сети и площадки с музыкой</p>
+
+            <div class="links-soz">
+                <div id="yan" class="links-ss">
+                    <a href="https://music.yandex.ru/artist/6236891?utm_source=web&utm_medium=copy_link">
+                    <img src="image/icons/Yandex Music New.avif">
+                </a>
+                <a href="https://music.yandex.ru/artist/6236891?utm_source=web&utm_medium=copy_link">
+                    <p>mzlff</p>
+                </a>
+                </div>
+
+                <div id="VK" class="links-ss">
+                    <a href="https://vk.com/mzlff?search_track_code=c2VhcmNoX2VudGl0eV92a19wZXJzb24vngHOAAM2GALS9i%2BmEwOqc2VhcmNoX2FsbATPOKUsdROppKUFAQatc2VhcmNoX2VudGl0eQcB">
+                <img src="image/icons/VK com.avif">
+            </a>
+            <a href="https://vk.com/mzlff?search_track_code=c2VhcmNoX2VudGl0eV92a19wZXJzb24vngHOAAM2GALS9i%2BmEwOqc2VhcmNoX2FsbATPOKUsdROppKUFAQatc2VhcmNoX2VudGl0eQcB">
+                <p>mzlff</p>       
+            </a>
+                </div>
+
+                <div id="twich" class="links-ss">
+                    <a href="https://www.twitch.tv/mazellovvv">
+                <img src="image/icons/Twitch.avif">
+            </a>
+            <a href="https://www.twitch.tv/mazellovvv">
+                <p>mazellovvv</p>                
+            </a>
+                </div>
+            </div>    
+           
+            <p style="margin-top: 20px;">Возможно расширение в будущем</p>
+        </div>
+    </div>
+
+    <script>
+        const openBtn = document.getElementById('platforms');
+        const sidePanel = document.getElementById('sidePanel');
+        const closePanelBtn = document.getElementById('closePanelBtn');
+        const overlay = document.getElementById('overlay');
+
+        // Открываем панель
+        function openPanel() {
+            sidePanel.classList.add('open');
+            overlay.classList.add('active');
+        }
+
+        // Закрываем панель
+        function closePanel() {
+            sidePanel.classList.remove('open');
+            overlay.classList.remove('active');
+        }
+
+        openBtn.addEventListener('click', openPanel);
+        closePanelBtn.addEventListener('click', closePanel);
+        overlay.addEventListener('click', closePanel);
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidePanel.classList.contains('open')) {
+                closePanel();
+            }
+        });
+    </script>
+                    <a href="main.html#merch-section" id="merch">Мерч</a>
+                </div>
+            </nav>
+                    <div class="parallax-layer layer-1" data-speed="0.3"></div>
+                    <div class="parallax-layer layer-2" data-speed="0.6"></div>
+                    <div class="parallax-layer layer-3" data-speed="0.7"></div>
+                </div>
+            </section>        
+        </header>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                cursor: url('image/main/cursor.png') 0 0, auto;
+                }
+                
+            body {            
+                overflow-x: hidden;
+            }
+
+            nav{
+                position: relative;
+                z-index: 67;
+            }
+
+            header{
+                ul{
+                    display: flex;
+                    justify-content: space-around;
+                }                
+                li{
+                display: inline;
+                flex-direction: row;                                
+                font-family: 'Arsenal SC';
+                font-style: italic;
+                font-weight: bold;
+                list-style: none;
+                a{
+                        text-decoration: none;
+                        color: #FAFCFD;
+                    }
+                }}
+            #header{
+                #links-header{
+                    z-index: 5;
+                    display: grid;
+                    grid-template-columns: 82px repeat(5, 1fr) 82px;
+                    grid-template-rows: 10px repeat(3, auto);
+                    justify-items: center;
+
+                    #songs{
+                        grid-row: 2;
+                        grid-column: 2;
+                    }
+                    #albums{
+                        grid-row: 3;
+                        grid-column: 3;
+                    }
+                    #logo{
+                        grid-row: 4;
+                        grid-column: 4;}
+                    #platforms{
+                        grid-row: 3;
+                        grid-column: 5;
+                    }
+                    #merch{
+                        grid-row: 2;
+                        grid-column: 6;
+                    }
+
+                    a{
+                        cursor: url(image/main/cursur-point.png) 2 2, default;
+                        font-family: 'Arsenal SC';
+                        font-size: 25px;
+                        font-weight: bolder;
+                        font-style: italic;
+                        color: #FAFCFD;
+                        text-decoration: none;
+                        transform: all 1s ease-in-out;
+                    }}
+                a:hover{
+                    filter: drop-shadow(7px 7px 15px rgba(255, 255, 255, 0.733));
+                    transform: all 1s ease-in-out;
+                }}
+        .parallax-section {
+            position: relative;
+            height: 90vh;
+            overflow: hidden;
+        }
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110%;            
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            will-change: transform;  
+        }
+
+        .section-1 .layer-1 {
+            background-image: url('image/main/grrrrr.avif');
+            z-index: 1;
+        }
+        .section-1 .layer-2 {
+            background-image: url('image/main/galaxy.avif');
+            background-size: 90vw;
+            z-index: 2;
+        }
+        .section-1 .layer-3 {            
+            background-image: url('image/main/артик.avif');
+            background-size: 55vw;
+            z-index: 3;
+        }
+
+        </style>
+    <script>
+       
+        const layers = document.querySelectorAll('.parallax-layer');
+        function updateParallax() {
+            const scrollY = window.scrollY;
+            layers.forEach(layer => {
+                const speed = parseFloat(layer.getAttribute('data-speed'));
+                if (isNaN(speed)) return;
+                const offset = scrollY * speed;
+                layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+            });
+        }
+        
+        window.addEventListener('scroll', updateParallax);
+        updateParallax();
+        
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateParallax();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+    </script>
+<canvas id="snowCanvas"></canvas>
+    <section id="inf">
+        <img src="image/main/razdelit.avif">
+
+    <div class="slider-wrapper">
+        
+        <div class="slider-text-section">
+            <div class="slider-viewport-text">
+                <div class="slider-text-track" id="sliderTextTrack">
+                    <div class="text-slide">
+                        <p> «Phantasmagoria Tour» — это не просто концерт, 
+                            а погружение в странный и притягательный мир, где 
+                            реальность переплетается со сном. На сцене царит 
+                            особая магия: мрачные баллады сменяются взрывными 
+                            драйвовыми треками, а свет и тени создают эффект 
+                            старинного фильма ужасов. Вокалист группы виртуозно 
+                            балансирует между хриплым шёпотом и мощным рок-криком, 
+                            заставляя сердце биться в унисон с ритмом. Каждая песня — 
+                            это маленький сюрреалистический рассказ о любви, безумии 
+                            и поиске себя среди хаоса. 
+                            Если вы устали от шаблонных поп-ритмов и хотите почувствовать вкус 
+                            настоящего арт-рок-беспредела — вам точно на «Phantasmagoria».</p>
+                    </div>
+                    <div class="text-slide">
+                        <p>«Phantasmagoria Tour» — это не просто концерт, 
+                            а погружение в странный и притягательный мир, где 
+                            реальность переплетается со сном. На сцене царит 
+                            особая магия: мрачные баллады сменяются взрывными 
+                            драйвовыми треками, а свет и тени создают эффект 
+                            старинного фильма ужасов. Вокалист группы виртуозно 
+                            балансирует между хриплым шёпотом и мощным рок-криком, 
+                            заставляя сердце биться в унисон с ритмом. Каждая песня — 
+                            это маленький сюрреалистический рассказ о любви, безумии 
+                            и поиске себя среди хаоса. 
+                            Если вы устали от шаблонных поп-ритмов и хотите почувствовать вкус 
+                            настоящего арт-рок-беспредела — вам точно на «Phantasmagoria».                            
+                        </p>
+                    </div>
+                    <div class="text-slide">
+                        <p>«Phantasmagoria Tour» — это не просто концерт, 
+                            а погружение в странный и притягательный мир, где 
+                            реальность переплетается со сном. На сцене царит 
+                            особая магия: мрачные баллады сменяются взрывными 
+                            драйвовыми треками, а свет и тени создают эффект 
+                            старинного фильма ужасов. Вокалист группы виртуозно 
+                            балансирует между хриплым шёпотом и мощным рок-криком, 
+                            заставляя сердце биться в унисон с ритмом. Каждая песня — 
+                            это маленький сюрреалистический рассказ о любви, безумии 
+                            и поиске себя среди хаоса.
+                            Если вы устали от шаблонных поп-ритмов и хотите почувствовать вкус 
+                            настоящего арт-рок-беспредела — вам точно на «Phantasmagoria».
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slider-image-section">
+            <div class="slider-viewport">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide"><img src="image/main/phan-tour.avif" alt="Slide 1"></div>
+                    <div class="slide"><img src="image/main/am-nyam-tour.avif" alt="Slide 2"></div>
+                    <div class="slide"><img src="image/main/mz-sl-ph.avif" alt="Slide 3"></div>
+                </div>
+            </div>
+            
+            <button id="nextBtn" class="nav-button">
+                <img src="image/main/arrow-sl-gl.avif" alt="Next">
+            </button>
+        </div>
+    </div>
+
+    <style>
+        #inf{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;            
+            backdrop-filter: blur(1px);            
+        }
+        .slider-wrapper {
+            display: flex;
+            gap: 12vw;
+            max-width: 1200px;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 4vw;
+        }
+        .slider-text-section {
+            flex: 1;
+            max-width: 570px;
+        }
+        
+        .slider-viewport-text {
+            overflow: hidden;
+            border-radius: 20px;
+        }
+        
+        .slider-text-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .text-slide {
+            font-family: Roboto Condensed;
+            flex-shrink: 0;
+            width: 570px;
+            height: 430px;
+            background-image: url(image/main/pod-sl-text.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            padding: 2vw;
+            color: white;
+            font-size: 18px;
+            line-height: 1.6;
+            border-radius: 20px;
+        }
+        .slider-image-section {
+            flex: 1;
+            max-width: 570px;
+            position: relative;
+        }
+        .slider-viewport {
+            overflow: hidden;
+        }
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slide {
+            flex-shrink: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url(image/main/gl-sl.avif);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 430px;
+            max-width: 570px;
+        }
+        .slide img {
+            width: 500px;
+            height: auto;
+            display: block;
+        }
+        .nav-button {
+            position: absolute;
+            top: 24vh;
+            right: 8vh;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: all 0.5s ease;
+            padding: 10px;
+            img{
+                cursor: url(image/main/cursur-point.png) 2 2, default;
+            }
+        }
+        
+        .nav-button:hover {
+            transition: all 0.5s ease;
+            transform: translate3d(1vw,-10%, 1vw);
+        }
+    </style>
+
+    <script>
+        const imageTrack = document.getElementById('sliderTrack');
+        const textTrack = document.getElementById('sliderTextTrack');
+        const slides = document.querySelectorAll('.slide');
+        const textSlides = document.querySelectorAll('.text-slide');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+        
+        function updateSliders() {
+            const imageOffset = -currentIndex * 100;
+            imageTrack.style.transform = `translateX(${imageOffset}%)`;
+            const textOffset = -currentIndex * 100;
+            textTrack.style.transform = `translateX(${textOffset}%)`;
+        }
+        
+        function nextSlide() {
+            if (currentIndex < totalSlides - 1) {
+                currentIndex++;
+            } else {
+                currentIndex = 0;  
+            }
+            updateSliders();
+        }
+        
+        function handleKeyPress(e) {
+            if (e.key === 'ArrowRight') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                } else {
+                    currentIndex = totalSlides - 1;
+                }
+                updateSliders();
+            }
+        }
+        nextBtn.addEventListener('click', nextSlide);
+        document.addEventListener('keydown', handleKeyPress);
+        updateSliders();
+    </script>
+    </section>
+
+    <section id="merch-section">
+        <div class="razdel">
+            <img src="image/main/razdelit.avif">
+            <h1>Мерч</h1>
+        </div>
+
+        <div class="things">
+            <img src="image/main/полярности.avif" id="polarnosti" alt="полярности">
+            <img src="image/main/светлая сторона.avif" id="light" alt="светлая_сторона">
+            <img src="image/main/я и кто.avif" id="meanyou" alt="я_и_кто">
+            <img src="image/main/альфред.avif" id="phan" alt="фантамас">
+        </div>
+
+<style>
+    .razdel{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        h1{
+            color: #8abef59f;
+            font-size: 3vw;
+            font-family: Roboto Condensed;
+            font-weight: bold;
+            font-style: italic;
+        }
+    }
+    #merch-section{
+        position: relative;
+        z-index: 67; 
+    }
+    .things{
+        display: grid;
+        grid-template-columns: 5vw repeat(45, 2vw) 5vw; 
+        grid-template-rows: repeat(8, 20px) 7vw;
+        /* margin-bottom: 5vw; */
+        #polarnosti{
+            grid-row: 1;
+            grid-column: 8;
+            z-index: 1;
+        }
+        #light{
+            grid-row: 2;
+            grid-column: 16;
+            z-index: 2;
+        }
+        #meanyou{
+            grid-row: 3;
+            grid-column: 22;
+            z-index: 3;
+        }
+        #phan{
+            grid-row: 4;
+            grid-column: 27;
+            z-index: 4;
+        }
+        img{
+            cursor: url(image/main/cursur-point.png) 2 2, default;
+            transition: all 1s ease-in-out;
+        }
+        img:hover{
+            filter: drop-shadow(8px 8px 15px #1277cf58);
+            transition: all 0.5s ease-in-out;
+        }
+    }
+</style>
+    </section>
+    
+<style>
+    #snowCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: auto;
+            display: block;
+        }
+</style>   
+<script>
+        (function() {
+            const CONFIG = {
+                PARTICLE_COUNT: 7,
+                PARTICLE_RADIUS: 3.5,
+                FALL_SPEED_MIN: 2.0,
+                FALL_SPEED_MAX: 2.5,
+                DRIFT_MIN: -1.7,
+                DRIFT_MAX: 1.5,
+                MOUSE_RADIUS: 150,
+                MOUSE_FORCE: 4,
+                DAMPING: 0.7,
+                MAX_SPEED: 7,
+                COLOR: "rgba(255, 255, 255, 0.55)",
+                GLOW_COLOR: "rgba(180, 255, 255, 0.5)",
+                TRAIL_INTENSITY: 0.6
+            };
+            
+            const canvas = document.getElementById('snowCanvas');
+            let ctx = canvas.getContext('2d');
+            let particles = [];
+            let mouseX = -1000, mouseY = -1000;
+            let width, height;
+            let animationId = null;
+            
+            class Snowflake {
+                constructor(x, y, vx, vy, radius, color) {
+                    this.x = x;
+                    this.y = y;
+                    this.vx = vx;
+                    this.vy = vy;
+                    this.radius = radius;
+                    this.color = color;
+                    this.opacity = 1 + Math.random() * 0.5;
+                }
+                
+                update(mouseX, mouseY, config, width, height) {
+                    const dx = this.x - mouseX;
+                    const dy = this.y - mouseY;
+                    const dist = Math.hypot(dx, dy);
+                    
+                    if (dist < config.MOUSE_RADIUS && dist > 0.01) {
+                        const force = (1 - dist / config.MOUSE_RADIUS) * config.MOUSE_FORCE;
+                        const angle = Math.atan2(dy, dx);
+                        const pushX = Math.cos(angle) * force;
+                        const pushY = Math.sin(angle) * force;
+                        this.vx += pushX;
+                        this.vy += pushY;
+                    }
+
+                    this.vy += 0.25;
+                    this.vx *= config.DAMPING;
+                    this.vy *= config.DAMPING;
+                    
+                    let speed = Math.hypot(this.vx, this.vy);
+                    if (speed > config.MAX_SPEED) {
+                        this.vx = (this.vx / speed) * config.MAX_SPEED;
+                        this.vy = (this.vy / speed) * config.MAX_SPEED;
+                    }
+
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.y > height) {
+                        this.y = 0;
+                        this.x = Math.random() * width;
+                        this.vy = (Math.random() * (config.FALL_SPEED_MAX - config.FALL_SPEED_MIN) + config.FALL_SPEED_MIN);
+                        this.vx = (Math.random() * (config.DRIFT_MAX - config.DRIFT_MIN) + config.DRIFT_MIN);
+                    }
+                    
+                    if (this.y < 0) {
+                        this.y = height;
+                        this.x = Math.random() * width;
+                        this.vy = -Math.abs(this.vy);
+                    }
+                    if (this.x < 0) this.x = width;
+                    if (this.x > width) this.x = 0;
+                }
+                
+                draw(ctx) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 1.5);
+                    ctx.shadowBlur = 5;
+                    ctx.shadowColor = CONFIG.GLOW_COLOR;
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                }
+            }
+            
+            function initParticles() {
+                particles = [];
+                for (let i = 0; i < CONFIG.PARTICLE_COUNT; i++) {
+                    const x = Math.random() * width;
+                    const y = Math.random() * height;
+                    const vx = (Math.random() * (CONFIG.DRIFT_MAX - CONFIG.DRIFT_MIN) + CONFIG.DRIFT_MIN);
+                    const vy = (Math.random() * (CONFIG.FALL_SPEED_MAX - CONFIG.FALL_SPEED_MIN) + CONFIG.FALL_SPEED_MIN);
+                    
+                    particles.push(new Snowflake(x, y, vx, vy, CONFIG.PARTICLE_RADIUS, CONFIG.COLOR));
+                }
+            }
+            function animate() {
+                if (!ctx) return;
+                ctx.fillStyle = `rgba(10, 20, 35, ${CONFIG.TRAIL_INTENSITY})`;
+                ctx.fillRect(0, 0, width, height);
+                
+                for (let p of particles) {
+                    p.update(mouseX, mouseY, CONFIG, width, height);
+                    p.draw(ctx);
+                }
+                animationId = requestAnimationFrame(animate);
+            }
+            
+            function onMouseMove(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                mouseX = (e.clientX - rect.left) * scaleX;
+                mouseY = (e.clientY - rect.top) * scaleY;
+            }
+            
+            function onMouseLeave() {
+                mouseX = -100;
+                mouseY = -100;
+            }
+            
+            function resizeCanvas() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+                initParticles();
+            }
+            
+            function setup() {
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+                window.addEventListener('mousemove', onMouseMove);
+                window.addEventListener('mouseleave', onMouseLeave);
+                animate();
+            }
+            setup();
+        })();
+    </script>
+
+    <section id="neww">
+        <div class="razdel">
+            <h1>Интересное</h1>
+            <img src="image/main/razdelit.avif">
+        </div>
+
+        <div id="bib">
+            <div class="albums">
+                <div id="album-card-1" class="alb">
+                    <img src="image/main/light.avif" class="obl">
+                    <a href="light.html" class="arr"><button><img src="image/main/arr-gl-down.avif"></button></a>
+                </div>
+                <div id="album-card-2" class="alb">
+                    <img src="image/main/phantas.avif" class="obl">
+                    <a href="#" class="arr"><button><img src="image/main/arr-gl-down.avif"></button></a>
+                </div>
+                <div id="album-card-3" class="alb">
+                    <img src="image/main/holoda-vetra.avif" class="obl">
+                    <a href="holod.html" class="arr"><button><img src="image/main/arr-gl-down.avif"></button></a>
+                </div>
+            </div>
+        </div>
+
+        <style>
+    #neww{
+        position: relative;
+        z-index: 67;
+        margin-top: 50vh;
+        margin-bottom: 15vh;
+    }
+    #bib{
+        height: 55vh;
+        background-image: url(image/main/подложечка.avif);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    .albums{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10vh 20vh;
+    }
+    .alb{
+        display: grid;
+        grid-template-columns: repeat(10, 30px);
+        grid-template-rows: repeat(10, 30px);
+        .arr{
+            grid-column: 8;
+            grid-row: 5;
+            height: 110px;
+            width: 135px;
+            button{
+                background: none;
+                border: none;
+                transition: all 0.5s ease-in-out;
+                img{
+                    cursor: url(image/main/cursur-point.png) 2 2, default;
+                }
+            }
+        }
+    }
+    button:hover{
+        transition: all 0.5s ease-in-out;
+        transform: translate3d(1vw,-10%, 1vw);}
+        </style>
+    </section>
+</body>
+</html>
